@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-import autoIncrement from 'mongoose-auto-increment'
- const userScheme=mongoose.Schema({
-    name:String,
-    username:String,
-    email:String,
-    phone:String
- })
 
-autoIncrement.initialize(mongoose.connection)
-userScheme.plugin(autoIncrement.plugin,'user');
+const userSchema = new mongoose.Schema({
+    name: String,
+    username: String,
+    email: String,
+    phone: String
+}, { timestamps: true });
+
+// Create and export the model
+const User = mongoose.model('User', userSchema);
+export default User;
 
 //mongoose.model('table-collection name',schema to kept in table)
- const user= mongoose.model('user',userScheme)
- export default user;
+ 
