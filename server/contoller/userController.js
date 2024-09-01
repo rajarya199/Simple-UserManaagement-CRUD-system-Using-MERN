@@ -18,3 +18,15 @@ export const addUser = async (request, response) => {
         response.status(409).json({ message: err.message });  // Sends an error response if saving fails
     }
 };
+
+export const getUser=async(request,response)=>{
+    
+    try {
+     const users= await User.find({});
+     response.status(200).json(users)
+
+    }catch(error){
+        response.status(404).json({message:error.message})
+
+    }
+}
