@@ -1,6 +1,6 @@
 import React ,{useEffect,useState} from 'react'
 import{Table,TableBody,TableCell,TableHead,TableRow,styled,Button} from '@mui/material'
-import { getUsers } from '../service/api'
+import { getUsers,deleteUser } from '../service/api'
 import { Link } from 'react-router-dom'
 const Styledtable=styled(Table)`
 width:90%;
@@ -32,6 +32,11 @@ const getAllUsers= async()=>{
   let response= await getUsers() 
   setUsers(response.data)
 }
+
+const deleteUserDetail=async(id)=>{
+  await deleteUser(id)
+  getAllUsers()
+}
   return (
     <>
     <Styledtable>
@@ -60,7 +65,7 @@ const getAllUsers= async()=>{
               <TableCell> {user.phone} </TableCell>
               <TableCell> 
                 <Button variant='contained' style={{marginRight:10}} component={Link} to={`/updateuser/${user._id}`}>Edit</Button>
-                <Button variant='contained' color='error'>Delete</Button>
+                <Button variant='contained' color='error' onClick={()=>deleteUserDetail(user._id)}>Delete</Button>
 
               </TableCell>
 

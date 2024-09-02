@@ -40,3 +40,12 @@ export const editUser=async(user,id)=>{
    }
 
 }
+
+export const deleteUser=async(id)=>{
+   try{
+      return await axios.delete(`${URL}/deleteuser/${id}`)
+   }
+   catch(error){
+      console.log('error while calling the delete user api')
+   }
+}
